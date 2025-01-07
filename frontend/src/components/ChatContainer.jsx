@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { useChatStore } from '../store/useChatStore';
 import ChatHeader from './ChatHeader';
@@ -14,20 +15,22 @@ function ChatContainer() {
   useEffect(() => {
     if (selectedUser) {
       getMessages(selectedUser._id);
+
       subscribeToMessages();
+
       return () => unsubscribeFromMessages();
     }
   }, [selectedUser, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
-      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
   if (isMessagesLoading) {
     return (
-      <div className="flex flex-col h-screen bg-gray-100">
+      <div className="flex flex-col flex-1 overflow-auto bg-gray-100">
         <ChatHeader />
         <MessageSkeleton />
         <MessageInput />
@@ -36,20 +39,20 @@ function ChatContainer() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col overflow-hidden bg-gray-50 ">
       <ChatHeader />
-      <div className="flex-1 max-w-4xl p-4 mx-auto space-y-6 overflow-y-auto bg-gray-100">
+      <div className="flex flex-col space-y-6 overflow-y-auto bg-gray-100 lg:p-4 sm:2">
         {messages.map((message) => (
           <div
             key={message._id}
-            className={`flex items-start space-x-3 my-1 ${
-              message.senderId === authUser._id ? 'justify-end' : 'justify-start'
-            }`}
+            ref={messageEndRef}
+            className={`flex items-start lg:space-x-3 sm:space-x-1 my-1 ${message.senderId === authUser._id ? 'justify-end' : 'justify-start'
+              }`}
           >
             {/* Avatar */}
-            <div className={`w-10 h-10 ${message.senderId === authUser._id ? 'order-2' : ''}`}>
+            <div className={`lg:w-10 w-8 h-8 lg:h-10 ${message.senderId === authUser._id ? 'order-2' : ''}`}>
               <img
-                className="w-10 h-10 border border-gray-300 rounded-full"
+                className="w-8 h-8 border border-gray-300 rounded-full lg:w-10 lg:h-10"
                 src={
                   message.senderId === authUser._id
                     ? authUser.profilePic
@@ -58,11 +61,11 @@ function ChatContainer() {
                 alt="profile"
               />
             </div>
+
             {/* Message Content */}
             <div
-              className={`max-w-xs px-4 py-2 text-sm text-gray-800 bg-white rounded-lg shadow-md ${
-                message.senderId === authUser._id ? 'bg-blue-100' : 'bg-white'
-              }`}
+              className={`max-w-xs px-4 py-2 text-sm text-gray-800 bg-white rounded-lg shadow-md ${message.senderId === authUser._id ? 'bg-blue-100' : 'bg-white'
+                }`}
             >
               {message.image && (
                 <div className="border border-blue-500">
@@ -81,9 +84,9 @@ function ChatContainer() {
             </div>
           </div>
         ))}
-        <div ref={messageEndRef}></div>
       </div>
       <MessageInput />
+
     </div>
   );
 }
