@@ -38,9 +38,9 @@ function ChatContainer() {
   }
 
   return (
-    <div className="flex flex-col flex-1 overflow-hidden bg-gray-50">
+    <div className="flex flex-col overflow-hidden bg-gray-50 ">
       <ChatHeader />
-      <div className="flex-1 p-4 space-y-6 overflow-y-auto bg-gray-100">
+      <div className="flex p-4 space-y-6 overflow-y-auto bg-gray-100">
         {messages.map((message) => (
           <div
             key={message._id}
@@ -86,7 +86,8 @@ function ChatContainer() {
           </div>
         ))}
       </div>
-      <MessageInput />
+      <div className='flex flex-wrap w-full'><MessageInput /></div>
+      
     </div>
   );
 }

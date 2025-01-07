@@ -46,9 +46,9 @@ function MessageInput() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 ">
       {imagePreview && (
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
           <div className="relative">
             <img
               src={imagePreview}
