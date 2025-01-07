@@ -86,7 +86,7 @@ function ChatContainer() {
           </div>
         ))}
       </div>
-      <div className='flex flex-wrap w-full'><MessageInput /></div>
+      <MessageInput />
       
     </div>
   );
