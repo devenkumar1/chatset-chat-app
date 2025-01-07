@@ -15,7 +15,7 @@ function ChatHeader() {
           <img
             src={selectedUser.profilePic}
             alt="User profile"
-            className="object-cover w-12 h-12 mr-4 rounded-full"
+            className="object-cover w-12 h-12 mb-2 mr-4 rounded-full"
           />
 
           {/* User Info */}

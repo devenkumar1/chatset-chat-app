@@ -4,15 +4,15 @@ import { Image, Send, X } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 function MessageInput() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
   const { sendMessage } = useChatStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please select an image file");
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
       return;
     }
 
@@ -25,7 +25,7 @@ function MessageInput() {
 
   const removeImage = () => {
     setImagePreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const handleSendMessage = async (e) => {
@@ -37,30 +37,30 @@ function MessageInput() {
         text: text.trim(),
         image: imagePreview,
       });
-      setText("");
+      setText('');
       setImagePreview(null);
-      if (fileInputRef.current) fileInputRef.current.value = "";
+      if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (error) {
-      console.error("Failed to send message:", error);
+      console.error('Failed to send message:', error);
     }
   };
 
   return (
-    <div className="w-full p-4 ">
+    <div className="w-full p-4 bg-white border-t">
       {imagePreview && (
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <div className="relative">
             <img
               src={imagePreview}
               alt="Preview"
-              className="object-cover w-20 h-20 border rounded-lg border-zinc-700"
+              className="object-cover w-20 h-20 border rounded-lg"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300 flex items-center justify-center"
+              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center"
               type="button"
             >
-              <X className="size-3" />
+              <X size={14} />
             </button>
           </div>
         </div>
@@ -81,12 +81,9 @@ function MessageInput() {
             ref={fileInputRef}
             onChange={handleImageChange}
           />
-
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle ${
-              imagePreview ? "text-emerald-500" : "text-zinc-400"
-            }`}
+            className="btn btn-circle"
             onClick={() => fileInputRef.current?.click()}
           >
             <Image size={20} />
