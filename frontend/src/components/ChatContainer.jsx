@@ -40,19 +40,19 @@ function ChatContainer() {
   return (
     <div className="flex flex-col overflow-hidden bg-gray-50 ">
       <ChatHeader />
-      <div className="flex p-4 space-y-6 overflow-y-auto bg-gray-100">
+      <div className="flex flex-col space-y-6 overflow-y-auto bg-gray-100 lg:p-4 sm:2">
         {messages.map((message) => (
           <div
             key={message._id}
             ref={messageEndRef}
-            className={`flex items-start space-x-3 ${
+            className={`flex items-start lg:space-x-3 sm:space-x-1 my-1 ${
               message.senderId === authUser._id ? 'justify-end' : 'justify-start'
             }`}
           >
             {/* Avatar */}
-            <div className={`w-10 h-10 ${message.senderId === authUser._id ? 'order-2' : ''}`}>
+            <div className={`lg:w-10 w-8 h-8 lg:h-10 ${message.senderId === authUser._id ? 'order-2' : ''}`}>
               <img
-                className="w-10 h-10 border border-gray-300 rounded-full"
+                className="w-8 h-8 border border-gray-300 rounded-full lg:w-10 lg:h-10"
                 src={
                   message.senderId === authUser._id
                     ? authUser.profilePic
