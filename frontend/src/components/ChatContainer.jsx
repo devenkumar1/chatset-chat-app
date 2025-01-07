@@ -6,10 +6,10 @@ import MessageInput from './MessageInput';
 import useAuthStore from '../store/useAuthStore';
 
 function ChatContainer() {
-  const { isMessagesLoading, messages, selectedUser, getMessages,subscribeToMessages,unsubscribeFromMessages } = useChatStore();
+  const { isMessagesLoading, messages, selectedUser, getMessages, subscribeToMessages, unsubscribeFromMessages } = useChatStore();
   const { authUser } = useAuthStore();
 
-  const messageEndRef=useRef(null);
+  const messageEndRef = useRef(null);
 
   useEffect(() => {
     if (selectedUser) {
@@ -17,16 +17,15 @@ function ChatContainer() {
 
       subscribeToMessages();
 
-      return()=>unsubscribeFromMessages();
+      return () => unsubscribeFromMessages();
     }
-  }, [selectedUser, getMessages,subscribeToMessages,unsubscribeFromMessages]);
+  }, [selectedUser, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
-  useEffect(()=>{
-    if(messageEndRef.current && messages){
-      
-      messageEndRef.current.scrollIntoView({behaviour:"smooth"})
+  useEffect(() => {
+    if (messageEndRef.current && messages) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  },[messages])
+  }, [messages]);
 
   if (isMessagesLoading) {
     return (
@@ -48,7 +47,6 @@ function ChatContainer() {
             ref={messageEndRef}
             className={`flex items-start space-x-3 ${
               message.senderId === authUser._id ? 'justify-end' : 'justify-start'
-              
             }`}
           >
             {/* Avatar */}
@@ -69,19 +67,19 @@ function ChatContainer() {
               className={`max-w-xs px-4 py-2 text-sm text-gray-800 bg-white rounded-lg shadow-md ${
                 message.senderId === authUser._id ? 'bg-blue-100' : 'bg-white'
               }`}
-            >  
-            {message.image&&(
-              <div className='border border-blue-500 border-1'>
-                <img src={message.image} />
-              </div>
-            )}
+            >
+              {message.image && (
+                <div className="border border-blue-500">
+                  <img src={message.image} alt="message" />
+                </div>
+              )}
               <p>{message.text}</p>
               <time className="block mt-1 text-xs text-gray-500">
                 {new Date(message.createdAt).toLocaleString('en-US', {
-                  day: 'numeric', // Date (e.g., 6)
-                  month: 'short', // Short month (e.g., Jan)
-                  hour: '2-digit', // Hour (e.g., 01)
-                  minute: '2-digit', // Minute (e.g., 15)
+                  day: 'numeric',
+                  month: 'short',
+                  hour: '2-digit',
+                  minute: '2-digit',
                 })}
               </time>
             </div>
