@@ -34,9 +34,7 @@ import connectDb from './lib/db.js';
 
 app.use('/api/auth',authRoutes);
 app.use("/api/messages",messageRoutes);
-app.get('/',(req,res)=>{
-    res.send("welcome to backend");
-})
+
 const PORT=process.env.PORT
 
 if(process.env.NODE_ENV==="production"){
