@@ -46,9 +46,9 @@ function MessageInput() {
   };
 
   return (
-    <div className="w-full p-4 bg-white border-t">
+    <div className="w-full p-4 bg-white border-t sm:p-1">
       {imagePreview && (
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3 sm:gap-0">
           <div className="relative">
             <img
               src={imagePreview}
@@ -69,7 +69,7 @@ function MessageInput() {
         <div className="flex flex-1 gap-2">
           <input
             type="text"
-            className="w-full rounded-lg input input-bordered input-sm sm:input-md"
+            className="w-full rounded-lg input input-bordered input-sm "
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -83,10 +83,10 @@ function MessageInput() {
           />
           <button
             type="button"
-            className="btn btn-circle"
+            className="btn btn-circle "
             onClick={() => fileInputRef.current?.click()}
           >
-            <Image size={20} />
+            <Image size={16} />
           </button>
         </div>
         <button
