@@ -75,7 +75,7 @@ function SideBar() {
             </div>
   
             {/* User Details */}
-            <div className="flex flex-col w-full text-left">
+            <div className="flex flex-col flex-1 w-full text-left">
               <div className="text-xs font-medium truncate">
                 {user.fullName}
               </div>
