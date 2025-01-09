@@ -24,7 +24,7 @@ function SideBar() {
   if (isUSersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="flex flex-col w-32 h-full transition-all duration-200 border-r border-base-300 lg:w-64 md:w-48 sm:w-40">
+    <aside className="flex flex-col w-32 h-full overflow-hidden transition-all duration-200 border-r border-base-300 lg:w-64 md:w-48 sm:w-40">
     {/* Header Section */}
     <div className="w-full p-2 border-b sm:p-2 border-base-300">
       <div className="flex flex-wrap items-center justify-between gap-2">
